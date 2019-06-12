@@ -11,7 +11,13 @@ import slearing.weather.util.weather.PMUtil;
 @Service
 public class PMService {
     public JSONObject getPM(String cityName){
-        JSONObject jsonObject = PMUtil.getPM(cityName);
+        String[] cityArr = cityName.split(" ");
+        //根据区获取PM
+        JSONObject jsonObject = PMUtil.getPM(cityArr[1]);
+
+        if(jsonObject.getString("resultcode").equals("202")){
+            jsonObject = PMUtil.getPM(cityArr[0]);
+        }
 
         return  jsonObject;
     }

@@ -10,6 +10,7 @@ import slearing.weather.util.weather.GetCityListUtil;
  */
 @Service
 public class CityListService {
+
     public JSONObject getCityList(){
         //调用第三方接口查询城市列表
         JSONObject jsonObject = GetCityListUtil.getCityList();

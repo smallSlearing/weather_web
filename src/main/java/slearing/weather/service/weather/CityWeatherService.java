@@ -14,7 +14,7 @@ public class CityWeatherService {
         JSONObject jsonObject = null;
 
         //调用第三方接口查询天气预报
-        jsonObject = WeatherReportByCity.GetTodayTemperatureByCity(cityName);
+        jsonObject = WeatherReportByCity.GetTodayTemperatureByCity(cityName.split(" ")[1]);
 
         return jsonObject;
     }

@@ -21,7 +21,7 @@ public class CityWeatherServiceTest {
 
     @Test
     public void getTodayTemperatureByCity() {
-        final JSONObject city = service.getTodayTemperatureByCity("广州");
-        System.out.println(city.toString());
+        final JSONObject city = service.getTodayTemperatureByCity("广州 增城");
+//        System.out.println(city.toString());
     }
 }

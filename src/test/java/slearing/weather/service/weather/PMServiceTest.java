@@ -21,7 +21,7 @@ public class PMServiceTest {
 
     @Test
     public void getPM() {
-        final JSONObject pm = pmService.getPM("广州");
+        final JSONObject pm = pmService.getPM("广州 增城");
         System.out.println(pm.toString());
     }
 }
