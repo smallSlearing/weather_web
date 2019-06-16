@@ -2,7 +2,7 @@ package slearing.weather.service.weather;
 
 import net.sf.json.JSONObject;
 import org.springframework.stereotype.Service;
-import slearing.weather.util.weather.HoursWeatherUtil;
+import slearing.weather.util.general.GeneralNetUtil;
 
 
 /**
@@ -14,7 +14,7 @@ public class HoursWeatherService {
     private String baseUrl = "https://api.heweather.net/s6/weather/hourly";
 
     public JSONObject getHoursWeather(String cityName){
-        HoursWeatherUtil hoursWeatherUtil = new HoursWeatherUtil();
+        GeneralNetUtil hoursWeatherUtil = new GeneralNetUtil();
         //拼凑url
         String url = baseUrl+"?location="+cityName.split(" ")[1]+"&key="+key;
 

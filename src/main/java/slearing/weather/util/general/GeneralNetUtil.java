@@ -1,4 +1,4 @@
-package slearing.weather.util.weather;
+package slearing.weather.util.general;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -11,13 +11,14 @@ import java.io.IOException;
 
 /**
  * @Author slearing
+ * 负责和一些第三方接口（查询未来三个小时、查询新闻）通信
  */
-public class HoursWeatherUtil {
+public class GeneralNetUtil {
 
     /**
      * 发送HttpGet请求
-     * @param url
-     * @return
+     * @param url  请求的地址
+     * @return  获得json数据
      */
     public String sendGet(String url) {
         //1.获得一个httpclient对象
@@ -53,7 +54,4 @@ public class HoursWeatherUtil {
         }
         return result;
     }
-
-
-
 }
