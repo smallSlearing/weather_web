@@ -1,8 +1,14 @@
 package slearing.weather.service.news;
 
+import com.github.pagehelper.PageHelper;
 import net.sf.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import slearing.weather.mapper.NewsMapper;
+import slearing.weather.pojo.News;
 import slearing.weather.util.general.GeneralNetUtil;
+
+import java.util.List;
 
 
 /**
@@ -11,24 +17,22 @@ import slearing.weather.util.general.GeneralNetUtil;
  */
 @Service
 public class NewsService {
-    //请求的key
-    private final String key = "db39e20d462bd0ed3c494628d7a883ff";
-    //请求的地址
-    private String baseUrl = "http://v.juhe.cn/toutiao/index";
 
-    public JSONObject getNewsByType(String type){
-        GeneralNetUtil newsNetUtil = new GeneralNetUtil();
-        //拼凑url
-        String url = baseUrl+"?type="+type+"&key="+key;
+    @Autowired
+    private NewsMapper newsMapper;
 
-        //调用第三方接口工具类查询新闻信息
-        String result = newsNetUtil.sendGet(url);
+    /**
+     * 根据新闻类型进行分页查询
+     * @param type  新闻类型
+     * @param pageNum  第几页
+     * @param pageSize 每页的大小
+     * @return  新闻列表
+     */
+    public List<News> findNewsByType(String type , int pageNum , int pageSize){
+        PageHelper.startPage(pageNum,pageSize);
 
-        //把字符串转成json对象
-        JSONObject jsonObject = JSONObject.fromObject(result);
+        List<News> list = newsMapper.findNewsByType(type);
 
-        return  jsonObject;
+        return list;
     }
-
-
 }

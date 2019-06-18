@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="slearing.weather.mapper.NewsMapper">
+
+    <!--插入新闻-->
+    <insert id="insertNews">
+        REPLACE INTO news
+        (uniquekey,title,date,category,author_name,url,thumbnail_pic_s)
+          VALUES
+        <foreach collection="list" index="index" item="item" separator=",">
+            (#{item.uniquekey},#{item.title},#{item.date},#{item.category},#{item.authorName},#{item.url},
+            #{item.thumbnailPicS})
+        </foreach>
+    </insert>
+
+
+    <!--根据新闻类型查询新闻-->
+    <select id="findNewsByType" resultType="slearing.weather.pojo.News">
+        select * from news where category=#{type}
+    </select>
+
+    <!--根据类型删除前面15条记录-->
+    <delete id="deleteNewsByType">
+        delete from news where category=#{type} limit 10
+    </delete>
+</mapper>
