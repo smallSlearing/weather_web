@@ -29,7 +29,7 @@ public class NewsController {
     @RequestMapping("getNewsByType")
     @ResponseBody
     public  List<News> getNewsByType(@RequestParam(defaultValue = "头条")String type,
-                                    @RequestParam(defaultValue = "0")int pageNum,@RequestParam(defaultValue = "5")int pageSize){
+                                    @RequestParam(defaultValue = "0")int pageNum,@RequestParam(defaultValue = "8")int pageSize){
 
         List<News> newsList = newsService.findNewsByType(type, pageNum, pageSize);
 

@@ -6,12 +6,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import slearing.weather.pojo.News;
+import slearing.weather.service.news.NewsService;
 import slearing.weather.service.weather.CityListService;
 import slearing.weather.service.weather.CityWeatherService;
-import slearing.weather.service.weather.HoursWeatherService;
-import slearing.weather.service.weather.PMService;
 
 import java.util.HashMap;
+import java.util.List;
 
 
 /**
@@ -24,15 +25,10 @@ public class CityWeatherController {
 
     @Autowired
     private CityWeatherService cityWeatherService;
-
     @Autowired
     private CityListService cityListService;
-
     @Autowired
-    private HoursWeatherService hoursWeatherService;
-
-    @Autowired
-    private PMService pmService;
+    private NewsService newsService;
 
     /**
      * 获取指定城市的所有天气信息
@@ -41,17 +37,19 @@ public class CityWeatherController {
      */
     @ResponseBody
     @RequestMapping("cityWeather")
-    public HashMap<String , JSONObject> cityWeather(@RequestParam(defaultValue = "广州 增城" ) String cityName ){
-         HashMap<String, JSONObject> map = new HashMap<>();
+    public HashMap<String , Object> cityWeather(@RequestParam(defaultValue = "广州 增城" ) String cityName ){
+         HashMap<String, Object> map = new HashMap<>();
          JSONObject cityWeather = cityWeatherService.getTodayTemperatureByCity(cityName); //指定城市的基础信息
-         JSONObject pm = pmService.getPM(cityName); //指定城市的PM值
-         JSONObject hoursWeather = hoursWeatherService.getHoursWeather(cityName); //指定城市的未来几个小时天气预报
-
-         map.put("cityWeather" ,cityWeather);
+         JSONObject pm = cityWeatherService.getPM(cityName); //指定城市的PM值
+         JSONObject hoursWeather = cityWeatherService.getHoursWeather(cityName); //指定城市的未来几个小时天气预报
+        List<News> news = newsService.findNewsByType("头条", 1, 4);
+        map.put("cityWeather" ,cityWeather);
          map.put("pm" ,pm);
          map.put("hoursWeather" ,hoursWeather);
+         map.put("news" ,news);
 
          return map;
+
     }
 
     /**

@@ -45,7 +45,7 @@ public class NewsScheduled {
     }
 
     /**
-     * 用来定时从数据库中删除10条新闻
+     * 用来定时从数据库中删除30条新闻
      */
     @Scheduled(fixedDelay = 1000*60*59) //设置每59分钟执行一次
     public void deleteNew(){
@@ -66,7 +66,7 @@ public class NewsScheduled {
         List<JSONArray> list = new ArrayList<>();
 
         for (String type:typeArr){
-            System.out.println(i++);
+
             GeneralNetUtil newsNetUtil = new GeneralNetUtil();
             //拼凑url
             String url = baseUrl+"?type="+type+"&key="+key;
