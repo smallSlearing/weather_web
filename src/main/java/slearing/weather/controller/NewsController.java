@@ -1,4 +1,4 @@
-package slearing.weather.controller.news;
+package slearing.weather.controller;
 
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;

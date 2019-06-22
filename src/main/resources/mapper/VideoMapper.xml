@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="slearing.weather.mapper.VideoMapper">
+    <!--查找所有的视频信息-->
+    <select id="findVideos" resultType="slearing.weather.pojo.Video">
+        select * from video
+    </select>
+
+    <!--点赞量+1-->
+    <update id="addStar">
+        update video set star=star+1 where id=#{id}
+    </update>
+
+</mapper>
