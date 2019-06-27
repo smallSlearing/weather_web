@@ -20,4 +20,9 @@ public interface VideoMapper {
      */
     int addStar(int id);
 
+    /**
+     * 移除视频的点赞量
+     * @return
+     */
+    int removeStar(int id);
 }

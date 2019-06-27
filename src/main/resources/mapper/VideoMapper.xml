@@ -14,4 +14,8 @@
         update video set star=star+1 where id=#{id}
     </update>
 
+    <!--点赞量-1-->
+    <update id="removeStar">
+        update video set star=star-1 where id=#{id}
+    </update>
 </mapper>

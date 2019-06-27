@@ -34,17 +34,18 @@ public class VideoService {
     }
 
     /**
-     * 实现点赞功能，是点赞数量加1
-     * @param id 被点赞的视频的id
+     * 实现点赞或者取消点赞功能
+     * @param id 视频的id
      * @return
      */
-    public boolean addStar(int id){
-        int rowNum = videoMapper.addStar(id);
+    public int star(int id , boolean isAdd){
+        int rowNum;
 
-        if(rowNum > 0){
-            return true;
+        if(isAdd){
+            rowNum = videoMapper.addStar(id);
+        }else{
+            rowNum = videoMapper.removeStar(id);
         }
-
-        return  false;
+        return rowNum;
     }
 }

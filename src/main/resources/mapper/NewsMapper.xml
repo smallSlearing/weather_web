@@ -22,8 +22,8 @@
         select * from news where category=#{type}
     </select>
 
-    <!--根据类型删除前面30条记录-->
+    <!--根据类型删除前面15条记录-->
     <delete id="deleteNewsByType">
-        delete from news where category=#{type} limit 30
+        delete from news where category=#{type} limit 15
     </delete>
 </mapper>
